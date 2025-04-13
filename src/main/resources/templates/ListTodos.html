@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+    <style>
+        body {
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .greeting h2 {
+            margin: 0;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .greeting span {
+            color: #0d6efd;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .btn-success {
+            background-color: #198754;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #157347;
+        }
+
+        .btn-warning {
+            color: black;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+
+            <!-- 💬 Header bar with greeting and logout -->
+            <div class="header-bar">
+                <div class="greeting">
+                    <h2>Welcome, <span th:text="${param.name}">User</span>!</h2>
+                </div>
+                <div>
+                    <a href="/logout" class="btn logout-btn">Logout</a>
+                </div>
+            </div>
+
+            <!-- 📝 To-Do Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Target Date</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="todo : ${todos}">
+                        <td th:text="${todo.username}">Username</td>
+                        <td th:text="${todo.description}">Description</td>
+                        <td th:text="${todo.targetDate}">Date</td>
+                        <td>
+                            <a th:href="@{'/update-todo?id=' + ${todo.id}}" class="btn btn-success px-3">Update</a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/delete-todo?id=' + ${todo.id}}" class="btn btn-warning px-3">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/add-todo" class="btn btn-success btn-lg px-4">
+                    + Add New Todo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery JS -->
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<!-- Bootstrap JS -->
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

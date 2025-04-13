@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Todo</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-lg">
+        <h2 class="text-center mb-4" th:text="${todo.id} != null ? 'Update Todo' : 'Add Todo'"></h2>
+        <form th:action="@{/add-todo}" th:object="${todo}" method="post">
+            <!-- your form fields here -->
+        </form>
+
+        <form th:action="@{/add-todo}" th:object="${todo}" method="post">
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label">name</label>
+                <input type="text" th:field="*{username}" class="form-control" placeholder="Enter your todo name" />
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger small mt-1"></div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text" th:field="*{description}" class="form-control" placeholder="Todo description" />
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger small mt-1"></div>
+            </div>
+
+            <!-- Target Date -->
+            <div class="mb-3">
+                <label class="form-label">Target Date</label>
+                <input type="date" th:field="*{targetDate}" class="form-control" />
+                <div th:if="${#fields.hasErrors('targetDate')}" th:errors="*{targetDate}" class="text-danger small mt-1"></div>
+            </div>
+
+            <!-- Hidden ID field for update -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save Todo</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- jQuery & Bootstrap JS -->
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
