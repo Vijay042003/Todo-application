@@ -27,11 +27,3 @@ This is a Task Management (Todo) application built using **Spring Boot**, **Thym
 - **Maven** (for managing dependencies and building the project)
 - **MySQL Database** with a configured database for storing user and task data.
 
-## Installation
-
-### Step 1: Clone the repository
-
-Clone the project to your local machine:
-
-```bash
-git clone https://github.com/Vijay042003/Todo-application.git
